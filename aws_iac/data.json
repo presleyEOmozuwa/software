@@ -1,0 +1,28 @@
+
+{
+    "taskDefinition": 
+    {
+        "containerDefinitions": 
+        [
+            {
+                "name": "sleep",
+                "command": [
+                    "sleep",
+                    "360"
+                ],
+                "cpu": 10,
+                "environment": [],
+                "essential": true,
+                "image": "busybox",
+                "memory": 10,
+                "mountPoints": [],
+                "portMappings": [],
+                "volumesFrom": []
+            }
+        ],
+        "family": "sleep360",
+        "revision": 1,
+        "taskDefinitionArn": "arn:aws:ecs:us-east-1:<aws_account_id>:task-definition/sleep360:19",
+        "volumes": []
+    }
+}

@@ -1,0 +1,26 @@
+
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: hello-service-account
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test # name of the Deployment file
+  labels:
+    app: test
+spec:
+  replicas: 0
+  selector:
+    matchLabels:
+      app: test
+  template: # pod config begins here
+    metadata:
+      labels:
+        app: test
+    spec:
+      containers:
+      - name: helloapp
+        image: hello-world
+        resources: {}

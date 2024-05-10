@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: server
+  labels:
+    app: server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: server
+  template:
+    metadata:
+      labels:
+        app: server
+    spec:
+      containers:
+      - name: backend
+        image: rubblestech3400/nodeapp:latest
+        env:
+          - name: MONGODB_POD_URL
+            valueFrom:
+              secretKeyRef:
+                name: server-variables
+                key: mongo-url
+          - name: PORT
+            valueFrom:
+              secretKeyRef:
+                name: server-variables
+                key: server-port      
+        ports:
+        - containerPort: 5000
+        resources: {}
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: server-cluster-ip-service
+spec:
+  type: ClusterIP
+  selector:
+    app: server
+  ports:
+    - port: 5000
+      targetPort: 5000 

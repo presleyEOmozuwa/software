@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: client # name of the Deployment file
+  labels:
+    app: client
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: client
+  template: # pod config begins here
+    metadata:
+      labels:
+        app: client
+    spec:
+      containers:
+      - name: frontend
+        image: rubblestech3400/reactapp:latest
+        ports:
+        - containerPort: 3000
+        resources: {}
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: client-cluster-ip-service
+spec:
+  type: ClusterIP
+  selector:
+    app: client
+  ports:
+    - port: 3000
+      targetPort: 3000        

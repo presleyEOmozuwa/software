@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: datastore
+  labels:
+    app: datastore
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: datastore
+  template:
+    metadata:
+      labels:
+        app: datastore
+    spec:
+      containers:
+      - name: database
+        image: rubblestech3400/database
+        resources: {}
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: datastore-cluster-ip-service
+spec:
+  type: ClusterIP
+  selector:
+    app: datastore
+  ports:
+    - port: 27017
+      targetPort: 27017        

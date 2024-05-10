@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: chase
+  namespace: developers-namespace
+  name: chase
+spec:
+  replicas: 0
+  selector:
+    matchLabels:
+      app: chase
+  template:
+    metadata:
+      labels:
+        app: chase
+    spec:
+      containers:
+      - name: application
+        image: busybox
+        resources: {}

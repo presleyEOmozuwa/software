@@ -1,0 +1,13 @@
+.form-data {
+    border: 1px solid grey;
+    padding: 25px;
+    margin: 20px;
+    font-family:monospace;
+    font-size: large;
+}
+div {
+    margin-bottom: 15px;
+}
+input {
+    outline-style: none;
+}
